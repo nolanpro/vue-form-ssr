@@ -1,12 +1,17 @@
 <template>
     <div>
         <h1>SSR Test {{ mode }}</h1>
-        <vue-form-renderer ref="renderer" @submit="previewSubmit" v-model="formData" :config="config" />
+        <vue-form-renderer @submit="previewSubmit" v-model="formData" :config="config" />
     </div>
 </template>
 
 <script>
-import { VueFormBuilder, VueFormRenderer } from "@processmaker/vue-form-builder";
+import Vue from 'vue'
+import { VueFormBuilder, VueFormRenderer} from "@processmaker/vue-form-builder";
+
+// FormText is the only supported component in SRR for now
+import FormText from "@processmaker/vue-form-builder/src/components/renderer/form-text.vue";
+Vue.component('FormText', FormText);
 
 export default {
     components: {
