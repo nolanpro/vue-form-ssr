@@ -13,7 +13,8 @@
     "@processmaker/vue-form-builder": "^0.4.0",
     "@processmaker/vue-form-elements": "^0.2.3",
     "vue": "^2.5.17",
-    "vue-server-renderer": "^2.5.17"
+    "vue-server-renderer": "^2.5.17",
+    "bootstrap-vue": "^2.0.0-rc.11"
   },
   "devDependencies": {
     "css-loader": "^1.0.1",
