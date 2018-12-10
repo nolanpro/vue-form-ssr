@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import renderVueComponentToString from 'vue-server-renderer/basic'
-import FormText from "@processmaker/vue-form-builder/src/components/renderer/form-text";
-import FormMultiColumn from "@processmaker/vue-form-builder/src/components/renderer/form-multi-column";
-import FormRecordList from "@processmaker/vue-form-builder/src/components/renderer/form-record-list";
-Vue.component(FormText);
-Vue.component(FormMultiColumn);
-Vue.component(FormRecordList);
+import { createRenderer } from 'vue-server-renderer'
+
+const renderer = createRenderer({
+  template: require('fs').readFileSync('./src/template.html', 'utf-8')
+})
+
+// This shouldn't have to be here.
+import * as VueDeepSet from 'vue-deepset'
+Vue.use(VueDeepSet);
 
 if (typeof context == 'undefined') {
   throw new Error(
@@ -17,15 +19,17 @@ if (typeof context == 'undefined') {
 
 const app = new Vue({
   el: '#app',
+  
   render: h => h(App, {
     props: {
       config: context.config,
       formData: context.data
-    }
+    },
   })
 })
 
-renderVueComponentToString(app, (err, html) => {
+// renderVueComponentToString(app, (err, html) => {
+renderer.renderToString(app, (err, html) => {
   if (err) {
     throw err
   }

@@ -1,0 +1,12 @@
+{
+    "name": "nolan/tests",
+    "authors": [
+        {
+            "name": "Nolan Ehrstrom",
+            "email": "github@nolanpro.com"
+        }
+    ],
+    "require": {
+        "spatie/server-side-rendering": "^0.2.5"
+    }
+}

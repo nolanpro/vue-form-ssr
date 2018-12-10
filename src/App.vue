@@ -6,17 +6,15 @@
 
 <script>
 import Vue from 'vue'
-import { VueFormBuilder, VueFormRenderer} from "@processmaker/vue-form-builder";
+import VueFormRenderer from "@processmaker/vue-form-builder/src/components/vue-form-renderer";
+import FormText from "@processmaker/vue-form-builder/src/components/renderer/form-text";
+import FormMultiColumn from "@processmaker/vue-form-builder/src/components/renderer/form-multi-column";
 
-// FormText is the only supported component in SRR for now
-import FormText from "@processmaker/vue-form-builder/src/components/renderer/form-text.vue";
+Vue.component('VueFormRenderer', VueFormRenderer);
 Vue.component('FormText', FormText);
+Vue.component('FormMultiColumn', FormMultiColumn);
 
 export default {
-    components: {
-        VueFormBuilder,
-        VueFormRenderer,
-    },
     props: ['config', 'formData'],
     data() {
         return {
@@ -24,7 +22,6 @@ export default {
     },
     methods: {
         previewSubmit() {
-            console.log("pushed")
         }
     }
 }
