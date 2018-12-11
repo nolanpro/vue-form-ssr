@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { createRenderer } from 'vue-server-renderer'
-
-const renderer = createRenderer({
-  template: require('fs').readFileSync('./src/template.html', 'utf-8')
-})
+import renderVueComponentToString from 'vue-server-renderer/basic'
 
 // This shouldn't have to be here.
 import * as VueDeepSet from 'vue-deepset'
@@ -28,8 +24,7 @@ const app = new Vue({
   })
 })
 
-// renderVueComponentToString(app, (err, html) => {
-renderer.renderToString(app, (err, html) => {
+renderVueComponentToString(app, (err, html) => {
   if (err) {
     throw err
   }
